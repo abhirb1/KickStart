@@ -1,4 +1,4 @@
-# BasicRepository
+# Kick Start Android Project
 This repository can be a good kick start for you to begin the development with basic architecture of app.
 
 Basic app architecture includes following libraries -:
