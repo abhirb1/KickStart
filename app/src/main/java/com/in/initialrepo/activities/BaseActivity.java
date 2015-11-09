@@ -5,41 +5,31 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.in.initialrepo.BaseApplication;
-import com.in.initialrepo.daggerModules.ActivityModule;
+import com.in.initialrepo.utils.Logger;
+import com.in.initialrepo.utils.WebServiceInterface;
 
-import java.util.Arrays;
-import java.util.List;
-
-import dagger.ObjectGraph;
+import javax.inject.Inject;
 
 /**
  * Created by Abhishek on 21/6/2015.
  */
 public class BaseActivity extends Activity {
 
-    private ObjectGraph activityGraph;
-    private BaseApplication application;
+    private static final String TAG = "BaseActivity";
+
+    @Inject
+    WebServiceInterface webServiceInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        application = (BaseApplication) getApplication();
-        activityGraph = application.getApplicationGraph().plus(getModules().toArray());
-        activityGraph.inject(this);
+        ((BaseApplication)getApplication()).getComponent().inject(this);
+        initUi();
     }
 
     @Override
     protected void onDestroy() {
-        activityGraph = null;
         super.onDestroy();
-    }
-
-    protected List<Object> getModules() {
-        return Arrays.<Object>asList(new ActivityModule(this));
-    }
-
-    public void inject(Object object) {
-        activityGraph.inject(object);
     }
 
     @Override
@@ -56,5 +46,11 @@ public class BaseActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    private void initUi() {
+        if(webServiceInterface != null) {
+            Logger.i(TAG, "Inject successful");
+        }
     }
 }

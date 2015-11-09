@@ -1,27 +1,42 @@
 package com.in.initialrepo;
 
 
+import android.support.v7.appcompat.BuildConfig;
+
+import com.in.initialrepo.activities.BaseActivity;
+import com.in.initialrepo.activities.MainActivity;
 import com.in.initialrepo.daggerModules.AppModule;
+import com.in.initialrepo.fragments.BaseFragment;
 import com.in.initialrepo.utils.LifeCycleHandler;
 
-import java.util.Arrays;
-import java.util.List;
+import javax.inject.Singleton;
 
-import dagger.ObjectGraph;
+import dagger.Component;
 
 /**
  * Created by Abhishek on 21/6/2015.
  */
 public class BaseApplication extends android.app.Application {
 
-    private ObjectGraph applicationGraph;
+    @Singleton
+    @Component(modules = {AppModule.class})
+    public interface ApplicationComponent {
+        void inject(BaseApplication application);
+        void inject(BaseActivity baseActivity);
+        void inject(MainActivity mainActivity);
+        void inject(BaseFragment baseFragment);
+    }
+
+    private ApplicationComponent component;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        //create object graph
-        applicationGraph = ObjectGraph.create(getModules().toArray());
-        applicationGraph.inject(this);
+        //inject components
+        component = DaggerBaseApplication_ApplicationComponent.builder()
+                .appModule(new AppModule(this))
+                .build();
+        component.inject(this);
 
         if (!BuildConfig.DEBUG) {
             // TODO Enable this after you get an api key
@@ -32,13 +47,7 @@ public class BaseApplication extends android.app.Application {
         registerActivityLifecycleCallbacks(new LifeCycleHandler());
     }
 
-
-    private List<Object> getModules() {
-        return Arrays.<Object>asList(new AppModule(this));
+    public ApplicationComponent getComponent() {
+        return component;
     }
-
-    public ObjectGraph getApplicationGraph() {
-        return this.applicationGraph;
-    }
-
 }

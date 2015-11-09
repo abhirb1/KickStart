@@ -1,13 +1,15 @@
-/*buildscript {
+buildscript {
     repositories {
-        maven { url 'https://maven.fabric.io/public' }
+        mavenCentral()
+        /*maven { url 'https://maven.fabric.io/public' }*/
     }
-
     dependencies {
-        classpath 'io.fabric.tools:gradle:1.+'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+        /*classpath 'io.fabric.tools:gradle:1.+'*/
     }
-}*/
+}
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 //apply plugin: 'io.fabric'
 
 /*repositories {
@@ -66,10 +68,6 @@ android {
             signingConfig signingConfigs.debug
         }
     }
-
-    lintOptions {
-        checkReleaseBuilds false
-    }
     packagingOptions {
         exclude 'META-INF/LGPL2.1'
         exclude 'META-INF/LICENSE'
@@ -78,27 +76,18 @@ android {
         exclude 'META-INF/NOTICE.txt'
 
     }
-    packagingOptions {
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/services/javax.annotation.processing.Processor'
-    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.jakewharton:butterknife:5.0.1'
-    compile 'com.afollestad:material-dialogs:0.7.4.2'
-    compile 'com.squareup.dagger:dagger:1.2.2'
-    provided 'com.squareup.dagger:dagger-compiler:1.2.2'
-    compile 'com.squareup.okhttp:okhttp:2.0.0'
-    compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
-    compile 'com.squareup.retrofit:retrofit:1.6.1'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.5'
-    compile 'com.fasterxml.jackson.core:jackson-core:2.4.5'
-    compile 'com.fasterxml.jackson.core:jackson-annotations:2.4.5'
+    compile 'javax.annotation:jsr250-api:1.0'
+    compile 'com.google.dagger:dagger:2.0'
+    apt 'com.google.dagger:dagger-compiler:2.0'
+    compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
     compile 'com.cocosw:bottomsheet:0.9@aar'
+    compile 'com.squareup.retrofit:converter-jackson:2.0.0-beta2'
     // TODO Enable this when you get an api key for Fabric
     /*compile('com.crashlytics.sdk.android:crashlytics:2.2.2@aar') {
         transitive = true;

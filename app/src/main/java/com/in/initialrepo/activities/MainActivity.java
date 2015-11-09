@@ -3,6 +3,7 @@ package com.in.initialrepo.activities;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.in.initialrepo.BaseApplication;
 import com.in.initialrepo.R;
 import com.in.initialrepo.utils.Logger;
 import com.in.initialrepo.utils.WebServiceInterface;
@@ -16,6 +17,8 @@ import butterknife.ButterKnife;
  */
 public class MainActivity extends BaseActivity {
 
+    // This is just an example to show you can inject webserviceinterface here too
+    // as we have already implemented it in baseactivity so you can get it from there
     @Inject
     WebServiceInterface webServiceInterface;
 
@@ -24,6 +27,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((BaseApplication)getApplication()).getComponent().inject(this);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
         initUi();
