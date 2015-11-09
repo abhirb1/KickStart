@@ -18,4 +18,8 @@ Rest things -:
 - Proguard
 
 
-More will be coming soon!
+Updated library with below features -:
+
+- Added Dagger 2.0
+- Retrofit 2.0 beta 2
+- Removed Material dialogs
