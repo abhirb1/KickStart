@@ -12,9 +12,6 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
-/**
- * Created by Abhishek on 21/6/2015.
- */
 public class MainActivity extends BaseActivity {
 
     // This is just an example to show you can inject webserviceinterface here too

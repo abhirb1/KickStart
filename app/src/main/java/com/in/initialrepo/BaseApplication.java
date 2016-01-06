@@ -13,9 +13,6 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
-/**
- * Created by Abhishek on 21/6/2015.
- */
 public class BaseApplication extends android.app.Application {
 
     @Singleton

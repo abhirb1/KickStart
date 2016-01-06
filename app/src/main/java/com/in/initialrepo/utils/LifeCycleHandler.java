@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
-/**
- * Created by Abhishek on 21/6/2015.
- */
 
 public class LifeCycleHandler implements Application.ActivityLifecycleCallbacks {
 

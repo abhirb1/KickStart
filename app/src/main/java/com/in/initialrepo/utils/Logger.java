@@ -4,10 +4,6 @@ import android.util.Log;
 
 import com.in.initialrepo.BuildConfig;
 
-/**
- * Created by Abhishek on 21/6/2015.
- */
-
 public class Logger {
 
     private static final boolean ENABLE_LOG = BuildConfig.DEBUG;

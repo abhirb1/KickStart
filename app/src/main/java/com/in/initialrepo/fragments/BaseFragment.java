@@ -6,9 +6,7 @@ import android.os.Bundle;
 
 import com.in.initialrepo.BaseApplication;
 
-/**
- * Created by Abhishek on 21/6/2015.
- */
+
 public class BaseFragment extends Fragment {
 
     @Override

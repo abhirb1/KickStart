@@ -10,9 +10,6 @@ import com.in.initialrepo.utils.WebServiceInterface;
 
 import javax.inject.Inject;
 
-/**
- * Created by Abhishek on 21/6/2015.
- */
 public class BaseActivity extends Activity {
 
     private static final String TAG = "BaseActivity";

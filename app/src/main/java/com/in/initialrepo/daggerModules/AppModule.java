@@ -15,9 +15,7 @@ import dagger.Module;
 import dagger.Provides;
 import retrofit.Retrofit;
 
-/**
- * Created by Abhishek on 21/6/2015.
- */
+
 @Module
 public class AppModule {
     private BaseApplication app;
