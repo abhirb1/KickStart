@@ -5,12 +5,12 @@ import android.view.MenuItem;
 
 import com.in.initialrepo.BaseApplication;
 import com.in.initialrepo.R;
-import com.in.initialrepo.utils.Logger;
 import com.in.initialrepo.utils.WebServiceInterface;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 public class MainActivity extends BaseActivity {
 
@@ -18,8 +18,6 @@ public class MainActivity extends BaseActivity {
     // as we have already implemented it in baseactivity so you can get it from there
     @Inject
     WebServiceInterface webServiceInterface;
-
-    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +42,7 @@ public class MainActivity extends BaseActivity {
 
     private void initUi() {
         if(webServiceInterface != null) {
-            Logger.i(TAG,"Inject successful");
+            Timber.i("Inject successful");
         }
     }
 

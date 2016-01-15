@@ -1,8 +1,6 @@
 package com.in.initialrepo;
 
 
-import android.support.v7.appcompat.BuildConfig;
-
 import com.in.initialrepo.activities.BaseActivity;
 import com.in.initialrepo.activities.MainActivity;
 import com.in.initialrepo.daggerModules.AppModule;
@@ -12,6 +10,7 @@ import com.in.initialrepo.utils.LifeCycleHandler;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import timber.log.Timber;
 
 public class BaseApplication extends android.app.Application {
 
@@ -38,6 +37,9 @@ public class BaseApplication extends android.app.Application {
         if (!BuildConfig.DEBUG) {
             // TODO Enable this after you get an api key
             //  Fabric.with(this, new Crashlytics());
+            // Timber.plant(new CrashlyticsTree());
+        } else {
+            Timber.plant(new Timber.DebugTree());
         }
 
         //TODO Use this if you want to track if application is in background or forground
@@ -47,4 +49,65 @@ public class BaseApplication extends android.app.Application {
     public ApplicationComponent getComponent() {
         return component;
     }
+
+    /**
+     * A tree which logs important information for crash reporting.
+     */
+   /* private static class CrashlyticsTree extends Timber.HollowTree {
+        @Override
+        public void v(String message, Object... args) {
+            logMessage(message, args);
+        }
+
+        @Override
+        public void v(Throwable t, String message, Object... args) {
+            logMessage(message, args);
+            // NOTE: We are explicitly not sending the exception to Crashlytics here.
+        }
+
+        @Override
+        public void i(String message, Object... args) {
+            logMessage(message, args);
+        }
+
+        @Override
+        public void i(Throwable t, String message, Object... args) {
+            logMessage(message, args);
+            // NOTE: We are explicitly not sending the exception to Crashlytics here.
+        }
+
+        @Override
+        public void w(String message, Object... args) {
+            logMessage("WARN: " + message, args);
+        }
+
+        @Override
+        public void w(Throwable t, String message, Object... args) {
+            logMessage("WARN: " + message, args);
+            // NOTE: We are explicitly not sending the exception to Crashlytics here.
+        }
+
+        @Override
+        public void e(String message, Object... args) {
+            logMessage("ERROR: " + message, args);
+        }
+
+        @Override
+        public void e(Throwable t, String message, Object... args) {
+            logMessage("ERROR: " + message, args);
+            Crashlytics.logException(t);
+        }
+
+        private void logMessage(String message, Object... args) {
+            try {
+                Crashlytics.log(String.format(message, args));
+            } catch (MissingFormatArgumentException e) {
+                Timber.e("Application MissingFormatArgumentException");
+            } catch (NullPointerException e) {
+                Timber.e("Message is null handled NullPointerException");
+            } catch (Exception e) {
+                Timber.e("Exception Handled");
+            }
+        }
+    }*/
 }

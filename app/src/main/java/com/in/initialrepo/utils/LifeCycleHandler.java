@@ -4,10 +4,11 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
+import timber.log.Timber;
+
 
 public class LifeCycleHandler implements Application.ActivityLifecycleCallbacks {
 
-    private static final String TAG = "LifeCycleHandler";
     public static int resumed;
     public static int stopped;
     public static int paused;
@@ -53,9 +54,9 @@ public class LifeCycleHandler implements Application.ActivityLifecycleCallbacks 
         if (resumed == paused) {
             isBackgroundedOnce = true;
         }
-        Logger.d(TAG, "resumed count" + LifeCycleHandler.resumed + "paused count" + LifeCycleHandler
+        Timber.d("resumed count" + LifeCycleHandler.resumed + "paused count" + LifeCycleHandler
                 .paused + "stopped count" + LifeCycleHandler.stopped);
-        Logger.i(TAG, "Application is being backgrounded " + (resumed == paused));
+        Timber.i("Application is being backgrounded " + (resumed == paused));
     }
 }
 

@@ -14,7 +14,7 @@ Basic app architecture includes following libraries -:
 Rest things -:
 - Activity life cycle handler
 - Unique packages
-- Logger
+- Timber
 - Proguard
 
 

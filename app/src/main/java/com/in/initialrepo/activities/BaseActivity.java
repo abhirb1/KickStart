@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.in.initialrepo.BaseApplication;
-import com.in.initialrepo.utils.Logger;
 import com.in.initialrepo.utils.WebServiceInterface;
 
 import javax.inject.Inject;
 
-public class BaseActivity extends Activity {
+import timber.log.Timber;
 
-    private static final String TAG = "BaseActivity";
+public class BaseActivity extends Activity {
 
     @Inject
     WebServiceInterface webServiceInterface;
@@ -47,7 +46,7 @@ public class BaseActivity extends Activity {
 
     private void initUi() {
         if(webServiceInterface != null) {
-            Logger.i(TAG, "Inject successful");
+            Timber.i("Inject successful");
         }
     }
 }
